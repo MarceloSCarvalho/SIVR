@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Veículos Roubados/Furtados</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
+    <style>
+      .search-wrapper {
+        background: #f8f9fa;
+        padding: 0.75rem 1rem; /* slightly less than before */
+        border-radius: 0.375rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .card-veiculo {
+        border-left: 5px solid #dc3545;
+      }
+      .recuperado {
+        border-left-color: #198754 !important;
+      }
+      .btn-stolen {
+        background-color: #dc3545;
+        color: white;
+      }
+      .btn-recovered {
+        background-color: #198754;
+        color: white;
+      }
+      .search-group .form-control {
+        border-radius: 0;
+      }
+      .search-group .col {
+        padding-right: 0;
+      }
+      .search-wrapper {
+        background: #f8f9fa;
+        padding: 10px 15px;
+        border-radius: 6px;
+        margin-bottom: 20px;
+      }
+    </style>
+  </head>
+  <body class="bg-light">
+    <!-- 🔝 Menu -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Sistema de Veículos</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link active" href="#">Início</a></li>
+            <li class="nav-item"><a class="nav-link" href="cadastrar.html">Cadastrar Veículo</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+      <!-- 🔍 Botão para mostrar/ocultar filtros -->
+      <div class="d-flex justify-content-between align-items-center mb-2">
+        <h5 class="mb-0">Busca Avançada</h5>
+        <button
+          class="btn btn-outline-secondary btn-sm"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#filtrosBusca"
+          aria-expanded="false"
+          aria-controls="filtrosBusca"
+        >
+          <i class="bi bi-funnel"></i> Mostrar Filtros
+        </button>
+      </div>
+
+      <!-- 🚘 Formulário de Busca (fora das colunas dos cards) -->
+      <div class="collapse" id="filtrosBusca">
+        <div class="row">
+          <div class="col-12 p-0">
+            <form class="row g-2 mb-4 search-wrapper">
+              <div class="col-md">
+                <input type="text" class="form-control" placeholder="Placa" />
+              </div>
+              <div class="col-md">
+                <input type="text" class="form-control" placeholder="Modelo" />
+              </div>
+              <div class="col-md">
+                <input type="text" class="form-control" placeholder="Cor" />
+              </div>
+              <div class="col-md">
+                <input type="text" class="form-control" placeholder="Cidade" />
+              </div>
+              <div class="col-md">
+                <input type="text" class="form-control" placeholder="Proprietário" />
+              </div>
+              <div class="col-md-auto">
+                <button class="btn btn-primary w-100"><i class="bi bi-search"></i> Buscar</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- 🚘 Lista de Veículos com DIVs (Responsivo) -->
+      <div class="row gy-3">
+        <!-- Veículo 1 - Ainda Roubado -->
+        <div class="col-12">
+          <div class="card shadow card-veiculo p-3">
+            <div class="row align-items-center">
+              <div class="col-md-2"><strong>Placa:</strong> ABC1234</div>
+              <div class="col-md-2"><strong>Modelo:</strong> Fiat Uno</div>
+              <div class="col-md-2"><strong>Cor:</strong> Branco</div>
+              <div class="col-md-2"><strong>Chassi:</strong> 9BWZZZ377VT004251</div>
+              <div class="col-md-1"><strong>Ano:</strong> 2015</div>
+              <div class="col-md-3 mt-2 mt-md-0">
+                <strong>Proprietário:</strong>
+                <a href="proprietario.html">João Silva</a>
+                <br />
+                <a href="fotos.html" class="btn btn-sm btn-outline-secondary mt-1"><i class="bi bi-camera"></i> Fotos</a>
+              </div>
+            </div>
+            <div class="mt-3 d-flex gap-2 flex-wrap">
+              <button class="btn btn-sm btn-warning"><i class="bi bi-pencil"></i> Editar</button>
+              <button class="btn btn-sm btn-danger"><i class="bi bi-trash"></i> Apagar</button>
+              <a href="situacao.html" class="btn btn-sm btn-stolen"><i class="bi bi-exclamation-circle"></i> Roubado</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Veículo 2 - Recuperado -->
+        <div class="col-12">
+          <div class="card shadow card-veiculo recuperado p-3">
+            <div class="row align-items-center">
+              <div class="col-md-2"><strong>Placa:</strong> XYZ5678</div>
+              <div class="col-md-2"><strong>Modelo:</strong> Onix</div>
+              <div class="col-md-2"><strong>Cor:</strong> Preto</div>
+              <div class="col-md-2"><strong>Chassi:</strong> 9BWZZZ377VT001111</div>
+              <div class="col-md-1"><strong>Ano:</strong> 2020</div>
+              <div class="col-md-3 mt-2 mt-md-0">
+                <strong>Proprietário:</strong>
+                <a href="proprietario.html">Maria Souza</a>
+                <br />
+                <a href="fotos.html" class="btn btn-sm btn-outline-secondary mt-1"><i class="bi bi-camera"></i> Fotos</a>
+              </div>
+            </div>
+            <div class="mt-3 d-flex gap-2 flex-wrap">
+              <button class="btn btn-sm btn-warning"><i class="bi bi-pencil"></i> Editar</button>
+              <button class="btn btn-sm btn-danger"><i class="bi bi-trash"></i> Apagar</button>
+              <a href="situacao.html" class="btn btn-sm btn-recovered"><i class="bi bi-check-circle"></i> Recuperado</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

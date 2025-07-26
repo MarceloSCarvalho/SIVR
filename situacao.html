@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Atualizar Situação do Veículo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
+  </head>
+  <body class="bg-light">
+    <!-- 🔝 Menu -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Sistema de Veículos</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="index.html">Início</a></li>
+            <li class="nav-item"><a class="nav-link" href="cadastrar.html">Cadastrar Veículo</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- 📝 Formulário de Alteração de Situação -->
+    <div class="container">
+      <div class="card shadow p-4">
+        <h4 class="mb-4"><i class="bi bi-exclamation-circle me-2"></i>Atualizar Situação do Veículo</h4>
+
+        <form>
+          <!-- Situação -->
+          <div class="mb-3">
+            <label class="form-label d-block">Situação do Veículo</label>
+
+            <div class="btn-group" role="group" aria-label="Situação do Veículo">
+              <input type="radio" class="btn-check" name="situacao" id="roubado" autocomplete="off" value="roubado" checked />
+              <label class="btn btn-outline-secondary" for="roubado">Roubado</label>
+
+              <input type="radio" class="btn-check" name="situacao" id="recuperado" autocomplete="off" value="recuperado" />
+              <label class="btn btn-outline-secondary" for="recuperado">Recuperado</label>
+            </div>
+          </div>
+
+          <!-- Data -->
+          <div class="mb-3">
+            <label for="data" class="form-label">Data da Ocorrência</label>
+            <input type="date" class="form-control" id="data" />
+          </div>
+
+          <!-- Cidade -->
+          <div class="mb-3">
+            <label for="cidade" class="form-label">Cidade da Ocorrência</label>
+            <input type="text" class="form-control" id="cidade" placeholder="Cidade onde foi recuperado ou roubado" />
+          </div>
+
+          <!-- Equipe -->
+          <div class="mb-3">
+            <label for="equipe" class="form-label">Equipe Responsável</label>
+            <input type="text" class="form-control" id="equipe" placeholder="Ex: RP Alfa, CPU, COPOM..." />
+          </div>
+
+          <!-- Relatório -->
+          <div class="mb-3">
+            <label for="relatorio" class="form-label">Relatório da Operação</label>
+            <textarea class="form-control" id="relatorio" rows="4" placeholder="Descreva como foi realizada a operação..."></textarea>
+          </div>
+
+          <!-- Botões -->
+          <div class="d-flex justify-content-between">
+            <a href="index.html" class="btn btn-secondary"> <i class="bi bi-arrow-left"></i> Cancelar </a>
+            <button type="submit" class="btn btn-success"><i class="bi bi-save"></i> Salvar Alterações</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const roubadoRadio = document.getElementById('roubado');
+        const recuperadoRadio = document.getElementById('recuperado');
+        const roubadoLabel = document.querySelector('label[for="roubado"]');
+        const recuperadoLabel = document.querySelector('label[for="recuperado"]');
+
+        function updateStyles() {
+          if (roubadoRadio.checked) {
+            roubadoLabel.classList.remove('btn-outline-secondary');
+            roubadoLabel.classList.add('btn-danger');
+            recuperadoLabel.classList.remove('btn-success');
+            recuperadoLabel.classList.add('btn-outline-secondary');
+          } else if (recuperadoRadio.checked) {
+            recuperadoLabel.classList.remove('btn-outline-secondary');
+            recuperadoLabel.classList.add('btn-success');
+            roubadoLabel.classList.remove('btn-danger');
+            roubadoLabel.classList.add('btn-outline-secondary');
+          }
+        }
+
+        // Initial style setup
+        updateStyles();
+
+        // Listen for changes
+        roubadoRadio.addEventListener('change', updateStyles);
+        recuperadoRadio.addEventListener('change', updateStyles);
+      });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

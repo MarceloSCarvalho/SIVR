@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Upload Images with Description</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
+    <style>
+      .image-group {
+        border: 1px solid #dee2e6;
+        border-radius: 0.5rem;
+        padding: 1rem;
+        background-color: #ffffff;
+        box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.05);
+        margin-bottom: 1rem;
+      }
+      @media (max-width: 768px) {
+        .remove-btn {
+          width: 100%;
+          margin-top: 0.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body class="bg-light">
+    <div class="container py-5">
+      <h3 class="mb-4">📷 Upload Photos with Descriptions (up to 4)</h3>
+
+      <form id="imageUploadForm" enctype="multipart/form-data">
+        <div id="imageInputs">
+          <div class="row image-group align-items-end">
+            <div class="col-md-5">
+              <label class="form-label">Choose Image</label>
+              <input type="file" name="images[]" accept="image/*" class="form-control" required />
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Description</label>
+              <input type="text" name="descriptions[]" class="form-control" placeholder="e.g. Front view of the vehicle" required />
+            </div>
+            <div class="col-md-1 text-end">
+              <button type="button" class="btn btn-outline-danger remove-btn d-none" title="Remove">
+                <i class="bi bi-x-lg"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- FIXED: Button in its own full-width row -->
+        <div class="row">
+          <div class="col-12">
+            <button type="button" class="btn btn-primary w-100" id="addImageBtn"><i class="bi bi-plus-circle me-1"></i> Add Another Image</button>
+          </div>
+        </div>
+
+        <div class="mt-3">
+          <button type="submit" class="btn btn-success"><i class="bi bi-upload me-1"></i> Submit</button>
+        </div>
+      </form>
+    </div>
+
+    <script>
+      const maxImages = 4;
+      const imageInputs = document.getElementById('imageInputs');
+      const addImageBtn = document.getElementById('addImageBtn');
+
+      addImageBtn.addEventListener('click', () => {
+        const currentCount = imageInputs.querySelectorAll('.image-group').length;
+        if (currentCount < maxImages) {
+          const group = document.createElement('div');
+          group.className = 'row image-group align-items-end';
+
+          const colFile = document.createElement('div');
+          colFile.className = 'col-md-5';
+          colFile.innerHTML = `
+            <label class="form-label">Choose Image</label>
+            <input type="file" name="images[]" accept="image/*" class="form-control" required>
+          `;
+
+          const colDesc = document.createElement('div');
+          colDesc.className = 'col-md-6';
+          colDesc.innerHTML = `
+            <label class="form-label">Description</label>
+            <input type="text" name="descriptions[]" class="form-control" placeholder="e.g. Front view of the vehicle" required>
+          `;
+
+          const colRemove = document.createElement('div');
+          colRemove.className = 'col-md-1 text-end';
+          const removeBtn = document.createElement('button');
+          removeBtn.type = 'button';
+          removeBtn.className = 'btn btn-outline-danger remove-btn';
+          removeBtn.title = 'Remove';
+          removeBtn.innerHTML = '<i class="bi bi-x-lg"></i>';
+          removeBtn.onclick = () => {
+            group.remove();
+            toggleAddButton();
+            toggleRemoveButtons();
+          };
+          colRemove.appendChild(removeBtn);
+
+          group.appendChild(colFile);
+          group.appendChild(colDesc);
+          group.appendChild(colRemove);
+          imageInputs.appendChild(group);
+
+          toggleAddButton();
+          toggleRemoveButtons();
+        }
+      });
+
+      function toggleAddButton() {
+        const total = imageInputs.querySelectorAll('.image-group').length;
+        addImageBtn.disabled = total >= maxImages;
+      }
+
+      function toggleRemoveButtons() {
+        const groups = imageInputs.querySelectorAll('.image-group');
+        groups.forEach((group, index) => {
+          const btn = group.querySelector('.remove-btn');
+          btn.classList.toggle('d-none', index === 0);
+        });
+      }
+
+      toggleRemoveButtons();
+    </script>
+  </body>
+</html>
