@@ -40,13 +40,17 @@
         border-radius: 6px;
         margin-bottom: 20px;
       }
+      .filtro-btn {
+        min-width: 110px;
+        text-align: center;
+      }
     </style>
   </head>
   <body class="bg-light">
     <!-- 🔝 Menu -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">Sistema de Veículos</a>
+        <div class="navbar-brand">SIVR - Marcelo</div>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -54,6 +58,7 @@
           <ul class="navbar-nav ms-auto">
             <li class="nav-item"><a class="nav-link active" href="#">Início</a></li>
             <li class="nav-item"><a class="nav-link" href="cadastrar.html">Cadastrar Veículo</a></li>
+            <li class="nav-item"><a class="nav-link active" href="#">Sair</a></li>
           </ul>
         </div>
       </div>
@@ -73,6 +78,15 @@
         >
           <i class="bi bi-funnel"></i> Mostrar Filtros
         </button>
+      </div>
+      <!-- 🔍 Botões de filtro por situação alinhados -->
+
+      <div class="row mb-3">
+        <div class="col d-flex gap-2 justify-content-end">
+          <button id="btnRoubado" class="btn btn-secondary btn-sm filtro-btn"><i class="bi bi-exclamation-circle"></i> Roubados</button>
+          <button id="btnRecuperado" class="btn btn-secondary btn-sm filtro-btn"><i class="bi bi-check-circle"></i> Recuperados</button>
+          <button id="btnTodos" class="btn btn-primary btn-sm filtro-btn"><i class="bi bi-list"></i> Todos</button>
+        </div>
       </div>
 
       <!-- 🚘 Formulário de Busca (fora das colunas dos cards) -->
@@ -154,7 +168,45 @@
         </div>
       </div>
     </div>
+    <script>
+      // Função para atualizar estilos dos botões
+      function atualizarBotoesFiltro(selecionado) {
+        document.getElementById('btnRoubado').className = 'btn btn-secondary btn-sm filtro-btn';
+        document.getElementById('btnRecuperado').className = 'btn btn-secondary btn-sm filtro-btn';
+        document.getElementById('btnTodos').className = 'btn btn-primary btn-sm filtro-btn';
 
+        if (selecionado === 'roubado') {
+          document.getElementById('btnRoubado').className = 'btn btn-danger btn-sm filtro-btn';
+        } else if (selecionado === 'recuperado') {
+          document.getElementById('btnRecuperado').className = 'btn btn-success btn-sm filtro-btn';
+        } else if (selecionado === 'todos') {
+          document.getElementById('btnTodos').className = 'btn btn-primary btn-sm filtro-btn';
+        }
+      }
+
+      // Filtro de situação dos veículos
+      document.getElementById('btnRoubado').onclick = function() {
+        document.querySelectorAll('.card-veiculo').forEach(card => {
+          card.parentElement.style.display = card.querySelector('.btn-stolen') ? '' : 'none';
+        });
+        atualizarBotoesFiltro('roubado');
+      };
+      document.getElementById('btnRecuperado').onclick = function() {
+        document.querySelectorAll('.card-veiculo').forEach(card => {
+          card.parentElement.style.display = card.querySelector('.btn-recovered') ? '' : 'none';
+        });
+        atualizarBotoesFiltro('recuperado');
+      };
+      document.getElementById('btnTodos').onclick = function() {
+        document.querySelectorAll('.card-veiculo').forEach(card => {
+          card.parentElement.style.display = '';
+        });
+        atualizarBotoesFiltro('todos');
+      };
+
+      // Inicializa com "Todos" selecionado
+      atualizarBotoesFiltro('todos');
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
