@@ -7,42 +7,60 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
     <style>
-      .search-wrapper {
-        background: #f8f9fa;
-        padding: 0.75rem 1rem; /* slightly less than before */
-        border-radius: 0.375rem;
-        margin-bottom: 1.5rem;
-      }
+          .search-wrapper {
+            background: #f8f9fa;
+            padding: 0.75rem 1rem; /* slightly less than before */
+            border-radius: 0.375rem;
+            margin-bottom: 1.5rem;
+          }
 
-      .card-veiculo {
-        border-left: 5px solid #dc3545;
-      }
-      .recuperado {
-        border-left-color: #198754 !important;
-      }
-      .btn-stolen {
-        background-color: #dc3545;
-        color: white;
-      }
-      .btn-recovered {
-        background-color: #198754;
-        color: white;
-      }
-      .search-group .form-control {
-        border-radius: 0;
-      }
-      .search-group .col {
-        padding-right: 0;
-      }
-      .search-wrapper {
-        background: #f8f9fa;
-        padding: 10px 15px;
-        border-radius: 6px;
-        margin-bottom: 20px;
-      }
-      .filtro-btn {
-        min-width: 110px;
-        text-align: center;
+          .card-veiculo {
+            border-left: 5px solid #dc3545;
+          }
+          .recuperado {
+            border-left-color: #198754 !important;
+          }
+          .grau {
+            border-left-color: #0dcaf0 !important;
+          }
+          .btn-stolen {
+            background-color: #dc3545;
+            color: white;
+          }
+          .btn-recovered {
+            background-color: #198754;
+            color: white;
+          }
+          .btn-grau {
+            background-color: #0dcaf0;
+            color: white;
+          }
+          .search-group .form-control {
+            border-radius: 0;
+          }
+          .search-group .col {
+            padding-right: 0;
+          }
+          .search-wrapper {
+            background: #f8f9fa;
+            padding: 10px 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+          }
+          .filtro-btn {
+            min-width: 100px;
+            font-size: 0.85rem;
+            padding: 2px 8px !important;
+          }
+          @media (max-width: 576px) {
+            .filtro-btn {
+              min-width: 80px;
+              font-size: 0.75rem;
+              padding: 2px 4px !important;
+            }
+          .col.d-flex.gap-2.justify-content-end.flex-wrap {
+            justify-content: center !important;
+        }
       }
     </style>
   </head>
@@ -85,6 +103,7 @@
         <div class="col d-flex gap-2 justify-content-end">
           <button id="btnRoubado" class="btn btn-secondary btn-sm filtro-btn"><i class="bi bi-exclamation-circle"></i> Roubados</button>
           <button id="btnRecuperado" class="btn btn-secondary btn-sm filtro-btn"><i class="bi bi-check-circle"></i> Recuperados</button>
+          <button id="btnGrau" class="btn btn-secondary btn-sm filtro-btn"><i class="bi bi-star"></i> Grau</button>
           <button id="btnTodos" class="btn btn-primary btn-sm filtro-btn"><i class="bi bi-list"></i> Todos</button>
         </div>
       </div>
@@ -166,25 +185,49 @@
             </div>
           </div>
         </div>
+        <!-- Veículo 3 - grau -->
+        <div class="col-12">
+          <div class="card shadow card-veiculo grau p-3">
+            <div class="row align-items-center">
+              <div class="col-md-2"><strong>Placa:</strong> XYZ5678</div>
+              <div class="col-md-2"><strong>Modelo:</strong> Onix</div>
+              <div class="col-md-2"><strong>Cor:</strong> Preto</div>
+              <div class="col-md-2"><strong>Chassi:</strong> 9BWZZZ377VT001111</div>
+              <div class="col-md-1"><strong>Ano:</strong> 2020</div>
+              <div class="col-md-3 mt-2 mt-md-0">
+                <strong>Proprietário:</strong>
+                <a href="proprietario.html">Maria Souza</a>
+                <br />
+                <a href="fotos.html" class="btn btn-sm btn-outline-secondary mt-1"><i class="bi bi-camera"></i> Fotos</a>
+              </div>
+            </div>
+            <div class="mt-3 d-flex gap-2 flex-wrap">
+              <button class="btn btn-sm btn-warning"><i class="bi bi-pencil"></i> Editar</button>
+              <button class="btn btn-sm btn-danger"><i class="bi bi-trash"></i> Apagar</button>
+              <a href="situacao.html" class="btn btn-sm bg-info"><i class="bi bi-star"></i> Grau</a>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <script>
-      // Função para atualizar estilos dos botões
       function atualizarBotoesFiltro(selecionado) {
         document.getElementById('btnRoubado').className = 'btn btn-secondary btn-sm filtro-btn';
         document.getElementById('btnRecuperado').className = 'btn btn-secondary btn-sm filtro-btn';
-        document.getElementById('btnTodos').className = 'btn btn-primary btn-sm filtro-btn';
+        document.getElementById('btnGrau').className = 'btn btn-secondary btn-sm filtro-btn';
+        document.getElementById('btnTodos').className = 'btn btn-secondary btn-sm filtro-btn';
 
         if (selecionado === 'roubado') {
           document.getElementById('btnRoubado').className = 'btn btn-danger btn-sm filtro-btn';
         } else if (selecionado === 'recuperado') {
           document.getElementById('btnRecuperado').className = 'btn btn-success btn-sm filtro-btn';
+        } else if (selecionado === 'grau') {
+          document.getElementById('btnGrau').className = 'btn btn-info btn-sm filtro-btn';
         } else if (selecionado === 'todos') {
           document.getElementById('btnTodos').className = 'btn btn-primary btn-sm filtro-btn';
         }
       }
 
-      // Filtro de situação dos veículos
       document.getElementById('btnRoubado').onclick = function() {
         document.querySelectorAll('.card-veiculo').forEach(card => {
           card.parentElement.style.display = card.querySelector('.btn-stolen') ? '' : 'none';
@@ -197,6 +240,12 @@
         });
         atualizarBotoesFiltro('recuperado');
       };
+      document.getElementById('btnGrau').onclick = function() {
+        document.querySelectorAll('.card-veiculo').forEach(card => {
+          card.parentElement.style.display = card.classList.contains('grau') ? '' : 'none';
+        });
+        atualizarBotoesFiltro('grau');
+      };
       document.getElementById('btnTodos').onclick = function() {
         document.querySelectorAll('.card-veiculo').forEach(card => {
           card.parentElement.style.display = '';
@@ -207,6 +256,7 @@
       // Inicializa com "Todos" selecionado
       atualizarBotoesFiltro('todos');
     </script>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
