@@ -25,13 +25,17 @@
             margin-bottom: 1.5rem;
           }
 
+
+          .adicionar:hover {
+            background-color: #218838;
+          }
           .card-veiculo {
             border-left: 5px solid #dc3545;
           }
           .recuperado {
             border-left-color: #198754 !important;
           }
-          .grau {
+          .wheelie {
             border-left-color: #0dcaf0 !important;
           }
           .btn-stolen {
@@ -49,11 +53,11 @@
 
             border-color: #146c43;
           }
-          .btn-grau {
+          .btn-wheelie {
             background-color: #0dcaf0;
             color: #000000;
           }
-          .btn-grau:hover {
+          .btn-wheelie:hover {
             border-color: #0ab2d1;
           }
           .search-group .form-control {
@@ -122,10 +126,10 @@
 
       <div class="row mb-3">
         <div class="col d-flex gap-2 justify-content-end">
-          <button id="btnRoubado" class="btn btn-secondary btn-sm filtro-btn"><i class="bi bi-exclamation-circle"></i> Roubados</button>
-          <button id="btnRecuperado" class="btn btn-secondary btn-sm filtro-btn"><i class="bi bi-check-circle"></i> Recuperados</button>
-          <button id="btnGrau" class="btn btn-secondary btn-sm filtro-btn"><i class="bi bi-star"></i> Grau</button>
-          <button id="btnTodos" class="btn btn-primary btn-sm filtro-btn"><i class="bi bi-list"></i> Todos</button>
+          <button id="stolen" class="btn btn-secondary btn-sm filtro-btn"><i class="bi bi-exclamation-circle"></i> Roubados</button>
+          <button id="btnRecovered" class="btn btn-secondary btn-sm filtro-btn"><i class="bi bi-check-circle"></i> Recuperados</button>
+          <button id="btnwheelie" class="btn btn-secondary btn-sm filtro-btn"><i class="bi bi-star"></i> Grau</button>
+          <button id="btnAll" class="btn btn-primary btn-sm filtro-btn"><i class="bi bi-list"></i> Todos</button>
         </div>
       </div>
 
@@ -159,7 +163,7 @@
 
       <!-- 🚘 Lista de Veículos com DIVs (Responsivo) -->
       <div class="row gy-3">
-        <!-- Veículo 1 - Ainda Roubado -->
+        <!-- Veículo 1 - Ainda stolen -->
         <div class="col-12">
           <div class="card shadow card-veiculo p-3">
             <div class="row align-items-center">
@@ -206,9 +210,9 @@
             </div>
           </div>
         </div>
-        <!-- Veículo 3 - grau -->
+        <!-- Veículo 3 - wheelie -->
         <div class="col-12">
-          <div class="card shadow card-veiculo grau p-3">
+          <div class="card shadow card-veiculo wheelie p-3">
             <div class="row align-items-center">
               <div class="col-md-2"><strong>Placa:</strong> XYZ5678</div>
               <div class="col-md-2"><strong>Modelo:</strong> Onix</div>
@@ -225,7 +229,7 @@
             <div class="mt-3 d-flex gap-2 flex-wrap">
               <button class="btn btn-sm btn-warning"><i class="bi bi-pencil"></i> Editar</button>
               <button class="btn btn-sm btn-danger"><i class="bi bi-trash"></i> Apagar</button>
-              <a href="situacao.html" class="btn btn-sm btn-grau"><i class="bi bi-star"></i> Ocorrência </a>
+              <a href="situacao.html" class="btn btn-sm btn-wheelie"><i class="bi bi-star"></i> Ocorrência </a>
             </div>
           </div>
         </div>
@@ -239,41 +243,41 @@
     </footer>
     <script>
       function atualizarBotoesFiltro(selecionado) {
-        document.getElementById('btnRoubado').className = 'btn btn-secondary btn-sm filtro-btn';
-        document.getElementById('btnRecuperado').className = 'btn btn-secondary btn-sm filtro-btn';
-        document.getElementById('btnGrau').className = 'btn btn-secondary btn-sm filtro-btn';
-        document.getElementById('btnTodos').className = 'btn btn-secondary btn-sm filtro-btn';
+        document.getElementById('stolen').className = 'btn btn-secondary btn-sm filtro-btn';
+        document.getElementById('btnRecovered').className = 'btn btn-secondary btn-sm filtro-btn';
+        document.getElementById('btnwheelie').className = 'btn btn-secondary btn-sm filtro-btn';
+        document.getElementById('btnAll').className = 'btn btn-secondary btn-sm filtro-btn';
 
-        if (selecionado === 'roubado') {
-          document.getElementById('btnRoubado').className = 'btn btn-danger btn-sm filtro-btn';
+        if (selecionado === 'stolen') {
+          document.getElementById('stolen').className = 'btn btn-danger btn-sm filtro-btn';
         } else if (selecionado === 'recuperado') {
-          document.getElementById('btnRecuperado').className = 'btn btn-success btn-sm filtro-btn';
-        } else if (selecionado === 'grau') {
-          document.getElementById('btnGrau').className = 'btn btn-info btn-sm filtro-btn';
+          document.getElementById('btnRecovered').className = 'btn btn-success btn-sm filtro-btn';
+        } else if (selecionado === 'wheelie') {
+          document.getElementById('btnwheelie').className = 'btn btn-info btn-sm filtro-btn';
         } else if (selecionado === 'todos') {
-          document.getElementById('btnTodos').className = 'btn btn-primary btn-sm filtro-btn';
+          document.getElementById('btnAll').className = 'btn btn-primary btn-sm filtro-btn';
         }
       }
 
-      document.getElementById('btnRoubado').onclick = function() {
+      document.getElementById('stolen').onclick = function() {
         document.querySelectorAll('.card-veiculo').forEach(card => {
           card.parentElement.style.display = card.querySelector('.btn-stolen') ? '' : 'none';
         });
-        atualizarBotoesFiltro('roubado');
+        atualizarBotoesFiltro('stolen');
       };
-      document.getElementById('btnRecuperado').onclick = function() {
+      document.getElementById('btnRecovered').onclick = function() {
         document.querySelectorAll('.card-veiculo').forEach(card => {
           card.parentElement.style.display = card.querySelector('.btn-recovered') ? '' : 'none';
         });
         atualizarBotoesFiltro('recuperado');
       };
-      document.getElementById('btnGrau').onclick = function() {
+      document.getElementById('btnwheelie').onclick = function() {
         document.querySelectorAll('.card-veiculo').forEach(card => {
-          card.parentElement.style.display = card.classList.contains('grau') ? '' : 'none';
+          card.parentElement.style.display = card.classList.contains('wheelie') ? '' : 'none';
         });
-        atualizarBotoesFiltro('grau');
+        atualizarBotoesFiltro('wheelie');
       };
-      document.getElementById('btnTodos').onclick = function() {
+      document.getElementById('btnAll').onclick = function() {
         document.querySelectorAll('.card-veiculo').forEach(card => {
           card.parentElement.style.display = '';
         });

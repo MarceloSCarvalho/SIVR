@@ -6,6 +6,23 @@
     <title>Fotos do Veículo</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
+    <style>
+      .thumb-foto {
+        transition: border 0.2s;
+        cursor: pointer;
+        width: 100%;
+        aspect-ratio: 4/3;
+        object-fit: cover;
+      }
+      .thumb-foto.selected, .thumb-foto:hover {
+        border: 2px solid #0d6efd;
+      }
+      @media (max-width: 576px) {
+        #galeria-thumbs .col-6 {
+          margin-bottom: 1rem;
+        }
+      }
+    </style>
   </head>
   <body class="bg-light">
     <!-- 🔝 Menu -->
@@ -24,106 +41,83 @@
       </div>
     </nav>
 
-    <!-- 🚘 Fotos do Veículo -->
     <div class="container">
       <div class="card shadow p-4">
         <h4 class="mb-4"><i class="bi bi-camera me-2"></i>Fotos do Veículo</h4>
+        <div class="row justify-content-center" id="galeria-thumbs">
+          <!-- Miniaturas serão inseridas via JS -->
+        </div>
+        <a href="index.html" class="btn btn-secondary mt-2"> <i class="bi bi-arrow-left"></i> Voltar para lista </a>
+      </div>
+    </div>
 
-        <div class="row g-3">
-          <!-- Foto 1 -->
-          <div class="col-6 col-md-4 col-lg-3">
-            <div class="card">
-              <img
-                src="https://via.placeholder.com/400x300?text=Frente"
-                class="card-img-top"
-                alt="Foto Frente"
-                data-bs-toggle="modal"
-                data-bs-target="#modalFoto1"
-              />
-            </div>
+    <!-- Modal para foto ampliada -->
+    <div class="modal fade" id="modalFoto" tabindex="-1" aria-labelledby="modalFotoLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content bg-dark text-white">
+          <div class="modal-header border-0">
+            <h5 class="modal-title" id="modalFotoLabel"></h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Fechar"></button>
           </div>
-
-          <!-- Foto 2 -->
-          <div class="col-6 col-md-4 col-lg-3">
-            <div class="card">
-              <img
-                src="https://via.placeholder.com/400x300?text=Traseira"
-                class="card-img-top"
-                alt="Foto Traseira"
-                data-bs-toggle="modal"
-                data-bs-target="#modalFoto2"
-              />
-            </div>
-          </div>
-
-          <!-- Foto 3 -->
-          <div class="col-6 col-md-4 col-lg-3">
-            <div class="card">
-              <img
-                src="https://via.placeholder.com/400x300?text=Lado+Esquerdo"
-                class="card-img-top"
-                alt="Foto Lateral"
-                data-bs-toggle="modal"
-                data-bs-target="#modalFoto3"
-              />
-            </div>
-          </div>
-
-          <!-- Foto 4 -->
-          <div class="col-6 col-md-4 col-lg-3">
-            <div class="card">
-              <img
-                src="https://via.placeholder.com/400x300?text=Interior"
-                class="card-img-top"
-                alt="Foto Interior"
-                data-bs-toggle="modal"
-                data-bs-target="#modalFoto4"
-              />
-            </div>
+          <div class="modal-body text-center">
+            <img id="modalFotoImg" src="" alt="" class="img-fluid rounded mb-3" />
+            <div id="modalFotoDesc" class="small"></div>
           </div>
         </div>
-
-        <a href="index.html" class="btn btn-secondary mt-4"> <i class="bi bi-arrow-left"></i> Voltar para lista </a>
       </div>
     </div>
 
-    <!-- 🖼️ Modais de Fotos -->
-    <!-- Modal 1 -->
-    <div class="modal fade" id="modalFoto1" tabindex="-1">
-      <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content">
-          <img src="https://via.placeholder.com/1200x800?text=Frente" class="img-fluid rounded" alt="Foto Frente" />
-        </div>
-      </div>
-    </div>
+    <script>
+      // Array de fotos (fácil de adaptar para sistema dinâmico)
+      const fotos = [
+        {
+          src: "fotos/frente.png",
+          desc: "Amassado no tanque"
+        },
+        {
+          src: "fotos/trás.png",
+          desc: "Traseira do veículo"
+        },
+        {
+          src: "fotos/esquerdo.png",
+          desc: "Lado esquerdo do veículo"
+        },
+        {
+          src: "fotos/direito.png",
+          desc: "Interior do veículo"
+        }
+      ];
 
-    <!-- Modal 2 -->
-    <div class="modal fade" id="modalFoto2" tabindex="-1">
-      <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content">
-          <img src="https://via.placeholder.com/1200x800?text=Traseira" class="img-fluid rounded" alt="Foto Traseira" />
-        </div>
-      </div>
-    </div>
+      // Renderiza as miniaturas em grid responsivo
+      const thumbsContainer = document.getElementById('galeria-thumbs');
+      fotos.forEach((foto, idx) => {
+        const col = document.createElement('div');
+        col.className = 'col-6 col-sm-3 d-flex justify-content-center align-items-center mb-3';
+        const img = document.createElement('img');
+        img.src = foto.src;
+        img.alt = foto.desc;
+        img.className = 'img-thumbnail thumb-foto';
+        img.setAttribute('data-bs-toggle', 'modal');
+        img.setAttribute('data-bs-target', '#modalFoto');
+        img.setAttribute('data-idx', idx);
+        if(idx === 0) img.classList.add('selected');
+        col.appendChild(img);
+        thumbsContainer.appendChild(col);
+      });
 
-    <!-- Modal 3 -->
-    <div class="modal fade" id="modalFoto3" tabindex="-1">
-      <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content">
-          <img src="https://via.placeholder.com/1200x800?text=Lado+Esquerdo" class="img-fluid rounded" alt="Foto Lateral" />
-        </div>
-      </div>
-    </div>
-
-    <!-- Modal 4 -->
-    <div class="modal fade" id="modalFoto4" tabindex="-1">
-      <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content">
-          <img src="https://via.placeholder.com/1200x800?text=Interior" class="img-fluid rounded" alt="Foto Interior" />
-        </div>
-      </div>
-    </div>
-
+      // Evento para abrir modal com a foto e descrição
+      thumbsContainer.addEventListener('click', function(e) {
+        if(e.target && e.target.matches('.thumb-foto')) {
+          document.querySelectorAll('.thumb-foto').forEach(el => el.classList.remove('selected'));
+          e.target.classList.add('selected');
+          const idx = e.target.getAttribute('data-idx');
+          document.getElementById('modalFotoImg').src = fotos[idx].src;
+          document.getElementById('modalFotoImg').alt = fotos[idx].desc;
+          document.getElementById('modalFotoLabel').textContent = fotos[idx].desc;
+          document.getElementById('modalFotoDesc').textContent = fotos[idx].desc;
+        }
+      });
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
