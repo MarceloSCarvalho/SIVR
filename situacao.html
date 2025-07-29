@@ -47,7 +47,21 @@
             <label for="equipe" class="form-label">Equipe Responsável</label>
             <input type="text" class="form-control" id="equipe" placeholder="Ex: RP Alfa, CPU, COPOM..." />
           </div>
-
+          <div class="mb-3">
+            <label class="form-label d-block">Situação do Veículo</label>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="situacao" id="roubada" value="roubada" required />
+              <label class="form-check-label" for="roubada">Roubada</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="situacao" id="recuperada" value="recuperada" />
+              <label class="form-check-label" for="recuperada">Recuperada</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="situacao" id="grau" value="grau" />
+              <label class="form-check-label" for="grau">Grau</label>
+            </div>
+          </div>
           <!-- Relatório -->
           <div class="mb-3">
             <label for="relatorio" class="form-label">Relatório da Operação</label>
