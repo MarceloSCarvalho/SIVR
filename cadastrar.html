@@ -137,7 +137,7 @@
             </div>
             <div class="col-md-4">
               <label class="form-label">Telefone</label>
-              <input type="text" class="form-control" placeholder="(11) 91234-5678" />
+              <input type="text" class="form-control" id="telefone" placeholder="(11) 91234-5678" maxlength="16" />
             </div>
           </div>
           <div class="row mb-3">
@@ -298,6 +298,20 @@
             });
         } else {
           cidadeSelect.innerHTML = '<option value="">Selecione o estado primeiro</option>';
+        }
+      });
+    </script>
+    <script>
+      // Máscara para telefone (formato: (99) 99999-9999)
+      document.getElementById('telefone').addEventListener('input', function (e) {
+        let v = e.target.value.replace(/\D/g, '');
+        if (v.length > 11) v = v.slice(0, 11);
+        if (v.length > 6) {
+          e.target.value = `(${v.slice(0,2)}) ${v.slice(2,7)}-${v.slice(7)}`;
+        } else if (v.length > 2) {
+          e.target.value = `(${v.slice(0,2)}) ${v.slice(2)}`;
+        } else if (v.length > 0) {
+          e.target.value = `(${v}`;
         }
       });
     </script>
