@@ -14,9 +14,11 @@
         aspect-ratio: 4/3;
         object-fit: cover;
       }
-      .thumb-foto.selected,
+      .thumb-foto.selected{
+        border: 2px solid var(--bs-success, #198754);
+      }
       .thumb-foto:hover {
-        border: 2px solid var(--bs-primary, #0d6efd);
+        border: 2px solid var(--bs-danger, #dc3545);
       }
       @media (max-width: 576px) {
         #galeria-thumbs .col-6 {

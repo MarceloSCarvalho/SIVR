@@ -77,19 +77,14 @@
       }
       @media (max-width: 576px) {
         .filtro-btn {
-          min-width: 80px;
-          font-size: 0.75rem;
-          padding: 2px 4px !important;
+          min-height: 50px;
+          min-width: 75px;
+          font-size: 0.76rem;
+          padding: 2px 2px !important;
         }
         .col.d-flex.gap-2.justify-content-end.flex-wrap {
           justify-content: center !important;
         }
-      }
-      .test {
-        display: block;
-        width: 10px;
-        height: 10px;
-
       }
     </style>
   </head>
@@ -131,10 +126,10 @@
 
       <div class="row mb-3">
         <div class="col d-flex gap-2 justify-content-end">
-          <button id="stolen" class="btn btn-secondary btn-sm filtro-btn"><i class="bi bi-exclamation-circle"></i> Roubados</button>
-          <button id="btnRecovered" class="btn btn-secondary btn-sm filtro-btn"><i class="bi bi-check-circle"></i> Recuperados</button>
-          <button id="btnwheelie" class="btn btn-secondary btn-sm filtro-btn"><i class="bi bi-star"></i> Grau</button>
-          <button id="btnAll" class="btn btn-primary btn-sm filtro-btn"><i class="bi bi-list"></i> Todos</button>
+          <button id="stolen" class="btn btn-secondary btn-sm filtro-btn"><i class="bi bi-exclamation-circle"></i> Roubado</button>
+          <button id="btnRecovered" class="btn btn-secondary btn-sm filtro-btn"><i class="bi bi-check-circle"></i> Recuperado</button>
+          <button id="btnwheelie" class="btn btn-secondary btn-sm w-auto filtro-btn"><i class="bi bi-star"></i> Grau</button>
+          <button id="btnAll" class="btn btn-primary btn-sm filtro-btn "><i class="bi bi-list"></i> Todos</button>
         </div>
       </div>
 
@@ -177,6 +172,7 @@
               <div class="col-md-2"><strong>Cor:</strong> Branco</div>
               <div class="col-md-2"><strong>Chassi:</strong> 9BWZZZ377VT004251</div>
               <div class="col-md-1"><strong>Ano:</strong> 2015</div>
+              <div class="col-md-2"><strong>Nº Motor:</strong> 1234567890</div>
               <div class="col-md-3 mt-2 mt-md-0">
                 <strong>Proprietário:</strong>
                 <a href="proprietario.html">João Silva</a>
@@ -187,7 +183,7 @@
             <div class="mt-3 d-flex gap-2 flex-wrap">
               <a href="situacao.html" class="btn btn-sm btn-warning"><i class="bi bi-pencil"></i> Editar</a>
               <button class="btn btn-sm btn-danger"><i class="bi bi-trash"></i> Apagar</button>
-              <a href="situacao.html" class="btn btn-sm btn-stolen"><i class="bi bi-exclamation-circle"></i> Ocorrência</a>
+              <a href="ocorrencias.html" class="btn btn-sm btn-stolen"><i class="bi bi-exclamation-circle"></i> Ocorrência</a>
             </div>
           </div>
         </div>
@@ -201,6 +197,7 @@
               <div class="col-md-2"><strong>Cor:</strong> Preto</div>
               <div class="col-md-2"><strong>Chassi:</strong> 9BWZZZ377VT001111</div>
               <div class="col-md-1"><strong>Ano:</strong> 2020</div>
+              <div class="col-md-2"><strong>Nº Motor:</strong> 9876543210</div>
               <div class="col-md-3 mt-2 mt-md-0">
                 <strong>Proprietário:</strong>
                 <a href="proprietario.html">Maria Souza</a>
@@ -211,7 +208,7 @@
             <div class="mt-3 d-flex gap-2 flex-wrap">
               <button class="btn btn-sm btn-warning"><i class="bi bi-pencil"></i> Editar</button>
               <button class="btn btn-sm btn-danger"><i class="bi bi-trash"></i> Apagar</button>
-              <a href="situacao.html" class="btn btn-sm btn-recovered"><i class="bi bi-check-circle"></i> Ocorrência </a>
+              <a href="ocorrencias.html" class="btn btn-sm btn-recovered"><i class="bi bi-check-circle"></i> Ocorrência </a>
             </div>
           </div>
         </div>
@@ -224,6 +221,7 @@
               <div class="col-md-2"><strong>Cor:</strong> Preto</div>
               <div class="col-md-2"><strong>Chassi:</strong> 9BWZZZ377VT001111</div>
               <div class="col-md-1"><strong>Ano:</strong> 2020</div>
+              <div class="col-md-2"><strong>Nº Motor:</strong> 5555555555</div>
               <div class="col-md-3 mt-2 mt-md-0">
                 <strong>Proprietário:</strong>
                 <a href="proprietario.html">Maria Souza</a>
@@ -234,7 +232,7 @@
             <div class="mt-3 d-flex gap-2 flex-wrap">
               <button class="btn btn-sm btn-warning"><i class="bi bi-pencil"></i> Editar</button>
               <button class="btn btn-sm btn-danger"><i class="bi bi-trash"></i> Apagar</button>
-              <a href="situacao.html" class="btn btn-sm btn-wheelie"><i class="bi bi-star"></i> Ocorrência </a>
+              <a href="ocorrencias.html" class="btn btn-sm btn-wheelie"><i class="bi bi-star"></i> Ocorrência </a>
             </div>
           </div>
         </div>
