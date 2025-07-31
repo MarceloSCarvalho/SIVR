@@ -58,6 +58,21 @@
           padding: 0.7rem 0.2rem;
         }
       }
+      @media (min-width: 577px) {
+        .situacao-group {
+          width: auto !important;
+          display: flex;
+          justify-content: flex-start;
+          gap: 0.5rem;
+        }
+        .situacao-group .btn.situacao-btn {
+          font-size: 0.95rem !important;
+          padding: 0.35rem 1.1rem !important;
+          min-width: 90px !important;
+          width: auto !important;
+          flex: none !important;
+        }
+      }
     </style>
   </head>
   <body class="bg-light">
@@ -125,13 +140,13 @@
             <label class="form-label d-block">Situação do Veículo:</label>
             <div class="btn-group w-100 situacao-group" role="group" aria-label="Situação do Veículo">
               <input type="radio" class="btn-check" name="situacao" id="roubada" value="roubada" autocomplete="off" required />
-              <label class="btn btn-danger btn-lg situacao-btn" for="roubada">Roubada</label>
+              <label class="btn btn-danger situacao-btn" for="roubada">Roubada</label>
 
               <input type="radio" class="btn-check" name="situacao" id="recuperada" value="recuperada" autocomplete="off" />
-              <label class="btn btn-success btn-lg situacao-btn" for="recuperada">Recuperada</label>
+              <label class="btn btn-success situacao-btn" for="recuperada">Recuperada</label>
 
               <input type="radio" class="btn-check" name="situacao" id="grau" value="grau" autocomplete="off" />
-              <label class="btn btn-info btn-lg text-dark situacao-btn" for="grau">Grau</label>
+              <label class="btn btn-info text-dark situacao-btn" for="grau">Grau</label>
             </div>
           </div>
           <!-- Fotos -->
@@ -268,6 +283,7 @@
         </form>
       </div>
     </div>
+    <div class="my-4"></div>
     <footer class="footer mt-auto py-3 bg-dark text-white-50">
       <div class="container text-center">
         <small>SIVR &copy; 2025 &middot; Desenvolvido por Marcelo</small>
