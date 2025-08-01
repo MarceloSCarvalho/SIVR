@@ -78,3 +78,93 @@ body {
     justify-content: center !important;
   }
 }
+/* Grupo de Situação */
+.situacao-group .situacao-btn {
+  font-size: 1.1rem;
+  padding: 0.75rem 0.5rem;
+  border-width: 2px;
+  opacity: 0.7;
+  background-color: var(--bs-light) !important;
+  color: var(--bs-dark) !important;
+  transition: opacity 0.2s, box-shadow 0.2s, background 0.2s, color 0.2s;
+}
+/* Apenas a opção marcada recebe a cor */
+.situacao-group #roubada:checked + .btn-danger {
+  background-color: var(--bs-danger) !important;
+  color: var(--bs-light) !important;
+  opacity: 1;
+}
+.situacao-group #recuperada:checked + .btn-success {
+  background-color: var(--bs-success) !important;
+  color: var(--bs-light) !important;
+  opacity: 1;
+}
+.situacao-group #grau:checked + .btn-info {
+  background-color: var(--bs-info) !important;
+  color: var(--bs-dark) !important;
+  opacity: 1;
+}
+.situacao-group .situacao-btn:hover {
+  opacity: 0.85;
+  filter: brightness(0.97);
+}
+@media (max-width: 576px) {
+  .situacao-group .situacao-btn {
+    font-size: 1rem;
+    padding: 0.7rem 0.2rem;
+  }
+}
+@media (min-width: 577px) {
+  .situacao-group {
+    width: auto !important;
+    display: flex;
+    justify-content: flex-start;
+    gap: 0.5rem;
+  }
+  .situacao-group .btn.situacao-btn {
+    font-size: 0.95rem !important;
+    padding: 0.35rem 1.1rem !important;
+    min-width: 90px !important;
+    width: auto !important;
+    flex: none !important;
+  }
+}
+
+/* fotos dos veículos */
+.thumb-foto {
+  transition: border 0.2s;
+  cursor: pointer;
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+}
+.thumb-foto.selected {
+  border: 2px solid var(--bs-success, #198754);
+}
+.thumb-foto:hover {
+  border: 2px solid var(--bs-danger, #dc3545);
+}
+@media (max-width: 576px) {
+  #galeria-thumbs .col-6 {
+    margin-bottom: 1rem;
+  }
+}
+
+/* grupo imagens em cadastrar */
+
+.image-group {
+  border: 1px solid var(--bs-border-color, #dee2e6);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  background-color: var(--bs-white, #ffffff);
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.05);
+}
+.image-group:not(:last-child) {
+  margin-bottom: 1rem;
+}
+@media (max-width: 768px) {
+  .remove-btn {
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+}
